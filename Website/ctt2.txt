@@ -1,0 +1,51 @@
+<!-- untuk membaca data-->
+<div class="contact1">
+	<div class="container-contact1">
+		<div class="contact1-pic js-tilt" data-tilt>
+        <div class="mx-auto">
+	<table class="table">
+		<thead>
+			<tr>
+                <th scope="col">No.</th>
+                <th scope="col">Nama</th>
+                <th scope="col">Email</th>
+                <th scope="col">Subject</th>
+                <th scope="col">Cerita</th>
+                <th scope="col">Aksi</th>			
+			</tr>
+            <tbody>
+                            <?php
+                            $sql2   = "select * from cerita order by id desc";
+                            $q2     = mysqli_query($koneksi,$sql2);
+                            $urut   = 1;
+                            while($r2 = mysqli_fetch_array($q2)){
+                                $id         = $r2['id'];
+                                $name       = $r2['name'];
+                                $email      = $r2['email'];
+                                $subject    = $r2['subject'];
+                                $message    = $r2['message'];
+                           ?>
+                            <tr>
+                                <th scope="row"> <?php echo $urut++ ?></th>
+                                <td scope="row"><?php echo $name?></td>
+                                <td scope="row"><?php echo $email?></td>
+                                <td scope="row"><?php echo $subject?></td>
+                                <td scope="row"><?php echo $message?></td>
+                                <td scope="row">
+                                    <a href="index.php?op=edit&id=<?php echo $id ?>"><button type="button" class="btn btn-warning">Edit</button></a>
+                                    <a href="index.php?op=delete&id=<?php echo $id?>" onclick="return confirm('Yakin mau delete data?')"><button type="button" class="btn btn-danger">Delete</button></a>            
+                                </td>
+                            </tr>
+
+                           <?php
+
+                           
+                            }
+                            ?>
+                        </tbody>
+                    </thead>
+                </table>
+</div>
+</div>
+</div>
+                        </div>
